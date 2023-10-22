@@ -27,9 +27,6 @@ public final class ADS1115 implements ADC {
     /** Single shot conversion mode. */
     private static final int CONFIG_MODE_SINGLE_SHOT = 0x0100;
 
-    /** Data rate, 128 samples / sec. */
-    private static final int CONFIG_DATA_RATE_128_SAMPLES = 0x0080;
-
     /** Disable the comparator config queue. */
     private static final int CONFIG_COMPARATOR_QUEUE_DISABLED = 0x0003;
 
@@ -77,7 +74,6 @@ public final class ADS1115 implements ADC {
         int configuration = CONFIG_START_SINGLE_CONVERSION |
                             CONFIG_PGA_4_096V |
                             CONFIG_MODE_SINGLE_SHOT |
-                            CONFIG_DATA_RATE_128_SAMPLES |
                             CONFIG_COMPARATOR_QUEUE_DISABLED;
 
         switch (channel) {
