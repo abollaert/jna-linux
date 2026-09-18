@@ -93,7 +93,7 @@ public final class I2CDevImpl implements I2CDev {
     @Override
     public final void setSlave(final long address) {
         if (this.isOpen()) {
-            logger.info("Setting slave to [{}]", address);
+            logger.debug("Setting slave to [{}]", address);
 
             final int ret = LibC.INSTANCE.ioctl(this.fd, I2C_SLAVE, new Pointer(address));
 

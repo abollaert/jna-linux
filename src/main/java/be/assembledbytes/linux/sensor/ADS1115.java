@@ -108,8 +108,11 @@ public final class ADS1115 implements ADC {
         this.i2CDev.write(new byte[] { CONVERSION_REGISTER });
 
         final byte[] data = this.i2CDev.read(2);
-        final int analogValue = ((data[0] & 0xFF) << 8) + (data[1] & 0xFF);
 
-        return ((double)analogValue * 4.096) / 32767.0;
+        // The conversion register holds a 16 bit two's complement value. Reading it unsigned
+        // wraps readings at or just below zero round to positive full scale.
+        final short analogValue = (short)(((data[0] & 0xFF) << 8) | (data[1] & 0xFF));
+
+        return ((double)analogValue * 4.096) / 32768.0;
     }
 }
